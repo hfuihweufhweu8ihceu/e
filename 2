@@ -1,1 +1,20 @@
-print("hi")
+if not HttpService.HttpEnabled then
+		return false
+	end
+	
+	local Result
+	local Success, errorMsg = pcall(function()
+		Result = HttpService:GetAsync(url)
+	end)
+	
+	if not Success then
+		return false
+	end
+	
+	local FoundKey = string.find(Result, Key)
+	print(`RESULT!: {tostring(Result)}`)
+	if FoundKey then
+		return true
+	else
+		return false
+	end
